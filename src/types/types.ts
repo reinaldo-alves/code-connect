@@ -7,5 +7,10 @@ export interface IPost {
     markdown: string,
     createdAt: Date,
     updatedAt: Date,
-    authorId: number
+    authorId: number,
+    author?: {
+        name?: string,
+        username: string,
+        avatar: string
+    }
 }

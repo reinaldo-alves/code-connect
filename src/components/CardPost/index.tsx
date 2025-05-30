@@ -18,7 +18,7 @@ export const CardPost = ({post, highlight}: {post: IPost, highlight?: boolean}) 
                     <p>{post.body}</p>
                 </section>
                 <footer>
-                    <Avatar name={post.author.username} imageSrc={post.author.avatar} />
+                    <Avatar name={post.author?.username || ''} imageSrc={post.author?.avatar || ''} />
                 </footer>
             </article>
         </Link>
