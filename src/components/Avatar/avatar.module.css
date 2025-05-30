@@ -1,0 +1,16 @@
+.ul {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    color: #888888;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+.ul li img {
+    vertical-align: middle;
+}
