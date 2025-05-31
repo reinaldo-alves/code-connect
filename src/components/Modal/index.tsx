@@ -4,7 +4,7 @@ import { forwardRef, useImperativeHandle, useRef } from "react"
 import { ReactNode } from "react"
 import styles from './modal.module.css'
 
-export const Modal = forwardRef(({ children }: {children: ReactNode}, ref) => {
+const Modal = forwardRef(({ children }: {children: ReactNode}, ref) => {
     const dialogRef = useRef<HTMLDialogElement | null>(null);
 
     const closeModal = () => {
@@ -28,3 +28,7 @@ export const Modal = forwardRef(({ children }: {children: ReactNode}, ref) => {
         </dialog>
     )
 })
+
+Modal.displayName = 'Modal'
+
+export default Modal

@@ -1,9 +1,7 @@
 'use client'
 
 import { forwardRef, useRef } from "react"
-import { ReactNode } from "react"
-import styles from './modal.module.css'
-import { Modal } from "../Modal"
+import Modal from "../Modal";
 import { IconButton } from "../IconButton"
 import { Chat } from "../icons/Chat"
 
@@ -12,7 +10,7 @@ interface IDialog {
     openModal: () => void;
 }
 
-export const ModalComment = forwardRef(() => {
+export const ModalComment = () => {
     const modalRef = useRef<IDialog | null>(null);
 
     return (
@@ -25,4 +23,4 @@ export const ModalComment = forwardRef(() => {
             </IconButton>
         </>
     )
-})
+}

@@ -7,7 +7,6 @@ import { CardPost } from "@/components/CardPost";
 import styles from './page.module.css';
 import db from "../../../../prisma/db";
 import { redirect } from "next/navigation";
-import { IComment } from "@/types/types";
 
 async function getPostBySlug(slug: string) {
     try {
