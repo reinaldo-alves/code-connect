@@ -1,6 +1,6 @@
 'use client'
 
-import { forwardRef, useRef } from "react"
+import { useRef } from "react"
 import Modal from "../Modal";
 import { IconButton } from "../IconButton"
 import { Chat } from "../icons/Chat"
