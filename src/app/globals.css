@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+::backdrop {
+  background-color: #171d1f;
+  opacity: 0.8;
+}
+
 body {
   background: linear-gradient(180deg, #0e1112 0%, #00090e 100%);
   margin: 0;

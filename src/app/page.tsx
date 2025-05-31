@@ -22,8 +22,8 @@ async function getPosts (page: number, searchTerm: string | undefined) {
       take: perPage,
       skip,
       where,
-      orderBy: { createdAt: 'desc' },
-      include: { author: true }
+      orderBy: { id: 'desc' },
+      include: { author: true, comments: true }
     });
     logger.info('Posts obtidos com sucesso!');
     return { data: response, prev, next };

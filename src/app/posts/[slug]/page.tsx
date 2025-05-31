@@ -7,12 +7,13 @@ import { CardPost } from "@/components/CardPost";
 import styles from './page.module.css';
 import db from "../../../../prisma/db";
 import { redirect } from "next/navigation";
+import { IComment } from "@/types/types";
 
 async function getPostBySlug(slug: string) {
     try {
         const post = await db.post.findFirst({
             where: { slug },
-            include: { author: true }
+            include: { author: true, comments: true }
         });
         if(!post) {
             throw new Error(`Post com o slug ${slug} não foi encontrado`);
@@ -37,7 +38,7 @@ const PagePost = async ({ params }: { params: Promise<{slug: string}> }) => {
     const post = await getPostBySlug(slug);
     return (
         <main className={styles.main}>
-            <CardPost post={post ? post : {id: 0, cover: '', title: '', slug: '', body: '', markdown: '',createdAt: new Date(), updatedAt: new Date(), authorId: 0}} highlight />
+            <CardPost post={post ? post : {id: 0, cover: '', title: '', slug: '', body: '', markdown: '',createdAt: new Date(), updatedAt: new Date(), authorId: 0, likes: 0, comments: []}} highlight />
             <h3 className={styles.subtitle}>Código:</h3>
             <div className={styles.code}>
                 <div dangerouslySetInnerHTML={{__html: post ? post.markdown : ''}} />
