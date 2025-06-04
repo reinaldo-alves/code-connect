@@ -1,0 +1,29 @@
+.body strong {
+    color: #81fe88;
+}
+
+.body p {
+    color: #e1e1e1;
+}
+
+.divider {
+    margin: 16px 0;
+    height: 88px;
+    border-left: 1px solid #888;
+}
+
+.footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    background-color: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: #000;
+    font-size: 15px;
+    font-style: normal;
+    margin: 8px 0;
+}

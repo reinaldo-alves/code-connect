@@ -4,13 +4,13 @@
     width: 486px;
 }
 
-.article header {
+.header {
     border-radius: 8px 8px 0 0;
     padding: 24px;
     background-color: #888;
 }
 
-.article figure {
+.header figure {
     position: relative;
 }
 
@@ -47,6 +47,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.actions {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
 }
 
 .article footer p {

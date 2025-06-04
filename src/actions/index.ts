@@ -1,6 +1,6 @@
 'use server'
 
-import { IPost } from "@/types/types";
+import { IComment, IPost } from "@/types/types";
 import db from "../../prisma/db";
 import { revalidatePath } from "next/cache";
 
@@ -12,4 +12,43 @@ export async function incrementThumbsUp(post: IPost) {
     })
     revalidatePath('/');
     revalidatePath(`/${post.slug}`);
+}
+
+export async function postComment(post: IPost, formData: any) {
+    // await new Promise((resolve) => setTimeout(resolve, 3500));
+    const author = await db.user.findFirst({
+        where: { username: 'anabeatriz_dev' }
+    })
+    if (author) {
+        await db.comment.create({
+            data: {
+                text: formData.get('text'),
+                authorId: author.id,
+                postId: post.id
+            }
+        });
+        revalidatePath('/');
+        revalidatePath(`/${post.slug}`);
+    }
+}
+
+export async function postReply(parent: IComment, formData: any) {
+    // await new Promise((resolve) => setTimeout(resolve, 3500));
+    const author = await db.user.findFirst({
+        where: { username: 'anabeatriz_dev' }
+    })
+    const post = await db.post.findFirst({
+        where:{ id: parent.postId }
+    })
+    if (author && post) {
+        await db.comment.create({
+            data: {
+                text: formData.get('text'),
+                authorId: author.id,
+                postId: post.id,
+                parentId: parent.parentId ?? parent.id
+            }
+        });
+        revalidatePath(`/${post.slug}`);
+    }
 }
