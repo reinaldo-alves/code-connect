@@ -1,7 +1,6 @@
 import { IComment } from "@/types/types";
 import Image from "next/image";
 import styles from './comment.module.css'
-import { ModalReply } from "../ModalReply";
 
 export const Comment = ({ comment }: {comment: IComment}) => {
     return (

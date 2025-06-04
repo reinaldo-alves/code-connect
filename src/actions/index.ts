@@ -14,15 +14,16 @@ export async function incrementThumbsUp(post: IPost) {
     revalidatePath(`/${post.slug}`);
 }
 
-export async function postComment(post: IPost, formData: any) {
+export async function postComment(post: IPost, formData: FormData) {
     // await new Promise((resolve) => setTimeout(resolve, 3500));
     const author = await db.user.findFirst({
         where: { username: 'anabeatriz_dev' }
     })
-    if (author) {
+    const text = formData.get('text');
+    if (author && typeof text === 'string') {
         await db.comment.create({
             data: {
-                text: formData.get('text'),
+                text,
                 authorId: author.id,
                 postId: post.id
             }
@@ -32,7 +33,7 @@ export async function postComment(post: IPost, formData: any) {
     }
 }
 
-export async function postReply(parent: IComment, formData: any) {
+export async function postReply(parent: IComment, formData: FormData) {
     // await new Promise((resolve) => setTimeout(resolve, 3500));
     const author = await db.user.findFirst({
         where: { username: 'anabeatriz_dev' }
@@ -40,10 +41,11 @@ export async function postReply(parent: IComment, formData: any) {
     const post = await db.post.findFirst({
         where:{ id: parent.postId }
     })
-    if (author && post) {
+    const text = formData.get('text');
+    if (author && post && typeof text === 'string') {
         await db.comment.create({
             data: {
-                text: formData.get('text'),
+                text,
                 authorId: author.id,
                 postId: post.id,
                 parentId: parent.parentId ?? parent.id

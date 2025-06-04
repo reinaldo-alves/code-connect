@@ -23,7 +23,12 @@ async function getPosts (page: number, searchTerm: string | undefined) {
       skip,
       where,
       orderBy: { id: 'desc' },
-      include: { author: true, comments: true }
+      include: { 
+        author: true,
+        comments: {
+          where: { parentId: null }
+        }
+      }
     });
     logger.info('Posts obtidos com sucesso!');
     return { data: response, prev, next };
